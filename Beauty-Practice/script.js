@@ -16,9 +16,7 @@ var cList = document.getElementById("cList")
 cList.style.color = "purple"
 cList.style.textAlign = "left"
 element.innerHTML = "Hello!"
-var inputBox = document.getElementById("text-input")
-console.log(inputBox.value)
-inputBox.value = "This is some magic~"
+//inputBox.value = "This is some magic~"
 var newLi = document.createElement("li")
 var characterList = document.getElementById("characterList")
 characterList.append(newLi)
@@ -40,3 +38,12 @@ for (var i = 0; i < faveColors.length; i++){
    colorName.textContent = faveColors[i]
    colorsList.append(colorName)
 }
+document.addEventListener('click', function(e){
+    let val = document.getElementById("text-input").value;
+    var commentBoxValue= document.getElementById("text-input").value;
+    console.log(val)
+    var li = document.createElement("li");
+    var text = document.createTextNode(commentBoxValue);
+    li.appendChild(text);
+    document.getElementById("unordered").appendChild(li);
+})
