@@ -8,7 +8,6 @@ form.addEventListener("submit", function(event){
     newDiv.className = "nDiv"
     const newItem = document.createElement("li");
     newItem.className = "newItem";
-    newItem.setAttribute('contenteditable', true)
     newItem.textContent = form.title.value;
     list.append(newDiv);
     newDiv.append(newItem);
@@ -27,14 +26,20 @@ form.addEventListener("submit", function(event){
         newDiv.remove()
     }); 
 
-edit.addEventListener("click", function handleClick(){
+edit.addEventListener("click", function(){
     if(edit.textContent === 'Edit'){
-        const saveBtn = document.createAttribute("button")
-        saveBtn.textContent = 'Save'
-        
-        edit.textContent = 'Save'
-
+      const saveInput = document.createElement('input');
+      saveInput.type = 'text';
+      saveInput.value = newItem.textContent;
+      newDiv.insertBefore(saveInput, newItem);
+      newDiv.removeChild(newItem);
+      edit.textContent = 'Save';
     } else if(edit.textContent === 'Save'){
+        const saveInput = newDiv.firstChild;
+        const saveLi = document.createElement('li');
+        saveLi.textContent = saveInput.value;
+        newDiv.insertBefore(saveLi, saveInput);
+        newDiv.removeChild(saveInput);
         edit.textContent = 'Edit'
     }
     })
